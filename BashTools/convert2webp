@@ -1,0 +1,25 @@
+export PATH=$PATH:libwebp/bin
+
+large_file_size=60k
+
+cwebp_extensions="*.png *.jpg *.jpeg"
+
+quality=75
+
+function image_to_webp {
+    large_images=`find . -name "$1" -size +$large_file_size`
+    for image in $large_images; do
+        echo $image
+        dir_name=`dirname $image`
+        base_name=`basename $image`
+        file_name=${base_name/png/webp}
+        $2 -q $quality $image -o $dir_name$file_name
+        rm $image
+    done
+}
+
+for extension in $cwebp_extensions; do
+    image_to_webp $extension cwebp
+done
+
+image_to_webp *.gif gif2webp
