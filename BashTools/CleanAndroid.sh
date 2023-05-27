@@ -2,7 +2,7 @@ project=$1
 
 compileSdkVersion=30
 buildToolsVersion=30.0.3
-minSdkVersion=28
+minSdkVersion=21
 targetSdkVersion=28
 
 function printAndroidConfig() {
